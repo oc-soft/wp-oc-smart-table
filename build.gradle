@@ -1,0 +1,183 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' 
+    id 'io.miret.etienne.sass' version '1.1.2'
+}
+
+repositories {
+    jcenter()
+}
+
+ext.siteSetting = [
+    targetDirectory: project.name
+]
+
+ext.webpackMode = 'development'
+ext.webpackSetting = [:]
+ext.webpackSetting.gradleBuildJs= 'gradle-build.js'
+ext.webpackSetting.gradleBuildPath =
+    file("webpack.config.d/00_${webpackSetting.gradleBuildJs}")
+
+kotlin {
+    js {
+        browser {
+            webpackTask {
+                output.libraryTarget = 'umd'
+            }
+        }
+    }
+
+    sourceSets {
+        jsMain {
+            dependencies {
+                implementation kotlin('stdlib-js')
+            }
+        }
+    }
+}
+
+/**
+ * get webpack task name
+ */
+def getWebpackTaskName() {
+    return "jsBrowser${ext.webpackMode.capitalize()}Webpack"
+}
+
+/**
+ * get distribution directory
+ */
+def getDistributionDir() {
+    def result = null
+    kotlin {
+        js {
+            browser {
+                distribution {
+                    result = directory
+                }
+            }
+        }
+    }
+    return result
+}
+
+sass {
+    version = '1.49.0'
+}
+
+
+
+compileSass {
+    def destDir = "${buildDir}/${siteSetting['targetDirectory']}/css"
+
+    sourceDir = file("src/style")
+    outputDir = file(destDir)
+}
+
+
+/**
+ * get webpack mode
+ */
+def getWebpackMode() {
+    def result = null
+    kotlin {
+        js {
+            browser {
+                commonWebpackConfig {
+                    result = mode
+                }
+            }
+        }
+    }
+    return result
+}
+
+task setupWebpackConfig {
+
+
+}
+
+jsBrowserDevelopmentWebpack.dependsOn setupWebpackConfig
+jsBrowserProductionWebpack.dependsOn setupWebpackConfig
+
+/**
+ * copy javascript into site image directory
+ */
+task copyJsIntoSiteImage {
+    def destDir = "${buildDir}/${siteSetting['targetDirectory']}/js"
+    def srcDir = getDistributionDir()    
+
+    doLast {
+        copy {
+            from srcDir
+            into destDir
+            include '**/*.js'
+            include '**/*.map'
+        }
+    }
+}
+
+
+
+copyJsIntoSiteImage.dependsOn tasks.getByPath(getWebpackTaskName())
+
+
+/**
+ * copy php files into site image directory
+ */
+task copyPhpIntoSiteImage {
+   
+    def destDir = "${buildDir}/${siteSetting['targetDirectory']}"
+    def srcDir = file('src/php')
+
+
+    copy {
+        from srcDir
+        into destDir
+        include '**/*.php'
+    }
+}
+
+/**
+ * copy src/config directory into site image direcctory 
+ */
+task copyConfigIntoSiteImage {
+   
+    def destDir = "${buildDir}/${siteSetting['targetDirectory']}/config"
+    def srcDir = file('src/config')
+
+
+    copy {
+        from srcDir
+        into destDir
+        include '**/*.json'
+    }
+}
+
+task archivePlugin(type: org.gradle.api.tasks.bundling.Zip) {
+    description = 'archive plugin'
+    def inputDir = "${buildDir}/${siteSetting['targetDirectory']}"
+
+    def outputDir = new File(buildDir, "wordpress/plugins")
+
+    archiveBaseName = project.name
+    destinationDir = outputDir
+    into project.name
+    from inputDir
+}
+
+
+/**
+ * build site imate
+ */
+task buildSiteImage {
+
+}
+
+buildSiteImage.dependsOn build
+buildSiteImage.dependsOn copyPhpIntoSiteImage
+buildSiteImage.dependsOn copyJsIntoSiteImage
+buildSiteImage.dependsOn copyConfigIntoSiteImage
+buildSiteImage.dependsOn compileSass
+
+archivePlugin.dependsOn buildSiteImage
+
+// vi: se ts=4 sw=4 et:

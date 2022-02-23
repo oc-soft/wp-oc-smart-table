@@ -1,0 +1,36 @@
+@use "sass:map";
+
+@use "breaks";
+
+.wp-block-table.oc-smart-table {
+  table {
+    display: none;
+  }
+}
+
+figure.oc-smart-table {
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+ul.oc-smart-table-container {
+  display: block;
+
+  list-style-type: none;
+
+  padding-inline: 0;
+  margin-block: 0;
+}
+
+@media (min-width: map.get(breaks.$basic-breakpoints, sm)) {
+  .wp-block-table.oc-smart-table {
+    table {
+      display: block;
+    }
+  }
+  ul.oc-smart-table-container {
+    display: none;
+  }
+}
+
+// vi: se ts=2 sw=2 et:
