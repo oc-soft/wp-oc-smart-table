@@ -28,4 +28,8 @@ external val Modal: (dynamic) -> dynamic
 
 external val Button: (dynamic) -> dynamic
 
+external val Flex: (dynamic) -> dynamic
+
+external val FlexItem: (dynamic) -> dynamic
+
 // vi: se ts=4 sw=4 et:

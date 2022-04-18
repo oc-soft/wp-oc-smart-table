@@ -19,15 +19,20 @@ package wordpress.i18n
 
 
 @JsName("__")
-external fun gettext(text: String, domain: String): String
+external fun gettext(text: String, 
+    domain: String = definedExternally): String
 
 @JsName("_x")
-external fun dcgettext(text: String, context: String, domain: String): String
+external fun dcgettext(text: String,
+    context: String, 
+    domain: String = definedExternally): String
 
 
 @JsName("_n")
 external fun ngettext(single: String, 
-    plural: String, number: Number, domain: String): String
+    plural: String, 
+    number: Number, 
+    domain: String = definedExternally): String
 
 
 external fun _ns(
@@ -35,7 +40,7 @@ external fun _ns(
     plural: String, 
     number: Number, 
     context: String,
-    domain: String): String
+    domain: String = definedExternally): String
 
 
 external fun isRTL(): Boolean
@@ -44,5 +49,10 @@ external fun hasTranslation(
     single: String,
     context: String,
     domain: String): Boolean
+
+
+external fun sprintf(
+    format: String,
+    vararg args: dynamic): String
 
 // vi: se ts=4 sw=4 et:

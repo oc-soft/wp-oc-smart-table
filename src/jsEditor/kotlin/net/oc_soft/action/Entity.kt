@@ -61,7 +61,6 @@ class Entity {
         }
         var updated = false   
         if (attr.ocSmartTableRequest) {
-            // childrenNew.add(createModal(settings))
             childrenNew.add(createTableEnableFragment(settings))
             updated = true
         }
@@ -81,22 +80,60 @@ class Entity {
             })
         }
         val onClickToClose: (Event)->Unit = { 
-            
+            setAttributes(object {
+                @JsName("ocSmartTableRequest")
+                    val ocSmartTableRequest = false
+            })
         }
+
+        val classesLabel = wordpress.i18n.gettext("Additional CSS class(es)")
+        val advancedLabel = wordpress.i18n.gettext("Advanced")
+        val smartTableSelector = "oc-smart-table"
+
+        val msgFmt = wordpress.i18n.gettext(
+"You put <b>%s</b> into <b>%s</b> at %s, if you use <b>Smart Table</b>.", 
+           "oc-smart-table")
+        val msg = wordpress.i18n.sprintf(msgFmt,
+            smartTableSelector, classesLabel, advancedLabel)
+
         return wordpress.element.createElement(wordpress.components.Modal,
             object {
                 @JsName("onRequestClose")
                 val onRequestCose = onClose
             },
             wordpress.element.createElement(
-                wordpress.components.Button,
-                    object {
-                        @JsName("text") 
-                        val text = "OK"
-                        @JsName("onClick")
-                        val onClick = onClickToClose
-                    }, 
-            null)
+                "p",
+                object {
+                    @JsName("dangerouslySetInnerHTML")
+                    val dangerouslySetInnerHTML = object {
+                        @JsName("__html")
+                        val html = msg
+                    }
+                } 
+            ),
+            wordpress.element.createElement(
+                wordpress.components.Flex,
+                object {
+                    @JsName("justify")
+                    val justify = "flex-end"
+                },
+                wordpress.element.createElement( 
+                    wordpress.components.FlexItem,
+                    null,
+                    wordpress.element.createElement(
+                        wordpress.components.Button,
+                        object {
+                            @JsName("variant")
+                            val variant = "primary"
+
+                            @JsName("text") 
+                            val text = wordpress.i18n.gettext("Close")
+                            @JsName("onClick")
+                            val onClick = onClickToClose
+                        }, 
+                        null)
+                )
+            )
         ) as react.ReactNode
     }
 
