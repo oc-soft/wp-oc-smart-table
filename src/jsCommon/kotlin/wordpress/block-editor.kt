@@ -13,13 +13,20 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/block-editor")
+@file:JsNonModule
+package wordpress.blockEditor
 
-/**
- * entry point
- */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+
+
+external val InspectorControls: (dynamic) -> dynamic
+
+
+@JsName("__experimentalUseColorProps")
+external fun useColorProps(attributes: dynamic): dynamic
+
+
+@JsName("__experimentalGetColorClassesAndStyles")
+external fun getColorClassesAndStyles(attributes: dynamic): dynamic
+
 // vi: se ts=4 sw=4 et:

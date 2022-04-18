@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 oc-soft
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package net.oc_soft
 
 import kotlinx.browser.document
@@ -61,7 +76,7 @@ class SmartTable {
      * update smart tables field in this object
      */
     fun updateSmartTables(table: HTMLTableElement) {
-        createDLists(table)?.let {
+        createListsFromTable(table)?.let {
             smartTables.add(arrayOf(table, it))
             table.after(it)
         }
@@ -70,9 +85,10 @@ class SmartTable {
     /**
      * create table replacement element
      */
-    fun createDLists(
+    fun createListsFromTable(
         table: HTMLTableElement): HTMLElement? {
-        val tableRow = table.tHead?.let {
+        
+        val headerRow = table.tHead?.let {
             val rows = it.rows
             var row : HTMLTableRowElement? = null
             for (idx in 0 until rows.length) {
@@ -85,31 +101,68 @@ class SmartTable {
             row
         }
 
-        
-        return tableRow?.let {
-            val tRow = it
-            val bodies = table.tBodies
-            val container = document.createElement(Site.containerTag)
-                as HTMLElement
-            container.classList.add(*Site.containerClasses)
-            for (bodyIdx in 0 until bodies.length) {
-                val body = bodies[bodyIdx]
-                body?.let {
-                    val elems = it.children
-                    for (idx in 0 until elems.length) {
-                        val elem = elems[idx]
-                        if (elem is HTMLTableRowElement) {
-                            val containerElem = document.createElement(
-                                Site.containerElementTag)
-                            containerElem.append(
-                                createDefintionList(tRow, elem))
-                            container.append(containerElem)
-                        }
+        val colorStyle = getColorStyle(table)
+
+        val createListElement: 
+            (rowElement: HTMLTableRowElement) -> HTMLElement = 
+        if (headerRow != null) {
+            { createDefintionList(headerRow, it) }
+        } else {
+            { createUList(it) } 
+        }
+        val bodies = table.tBodies
+        val container = document.createElement(Site.containerTag)
+            as HTMLElement
+        attachColorStyle(container, colorStyle)
+        container.classList.add(*Site.containerClasses)
+        for (bodyIdx in 0 until bodies.length) {
+            val body = bodies[bodyIdx]
+            body?.let {
+                val elems = it.children
+                for (idx in 0 until elems.length) {
+                    val elem = elems[idx]
+                    if (elem is HTMLTableRowElement) {
+                        val containerElem = document.createElement(
+                            Site.containerElementTag)
+                        containerElem.append(createListElement(elem))
+                        container.append(containerElem)
                     }
                 }
             }
-            container
         }
+        return container
+    }
+
+
+    /**
+     * attach color style
+     */
+    fun attachColorStyle(
+        element: HTMLElement,
+        colorStyle: dynamic) {
+
+        if (colorStyle.className) {
+            
+            val classNames = if (colorStyle.className is Array<*>) {
+                colorStyle.className as Array<String>
+            } else {
+                when (jsTypeOf(colorStyle.className)) {
+                "string" -> 
+                    (colorStyle.className as String).split(" ").toTypedArray()
+                else -> emptyArray<String>()
+                }
+            }
+            classNames.forEach {
+                element.classList.add(it)
+            }
+        }
+        if (colorStyle.style && jsTypeOf(colorStyle.style) == "object") {
+            val keys = js("Object.keys(colorStyle.style)") as Array<String>
+            keys.forEach {
+                element.style.setProperty(it, colorStyle.style[it])
+            }
+        }
+
     }
     
     /**
@@ -150,6 +203,48 @@ class SmartTable {
         }
         return result
     }
+
+    /**
+     * create unorder list element from table row element
+     */
+    fun createUList(
+        rowElement: HTMLTableRowElement): HTMLElement {
+        val cells = rowElement.cells
+        val result = document.createElement("ul") as HTMLElement
+
+        for (idx in 0 until cells.length) {
+            val cell = cells[idx]
+
+            val contents = if (cell is HTMLTableCellElement) {
+                cell.innerHTML
+            } else {
+                ""
+            }
+             
+            val liElem = document.createElement("li")
+            liElem.innerHTML = contents
+            result.append(liElem)
+        }
+        return result
+    }
+
+
+    /**
+     * get table element
+     */
+    fun getColorStyle(
+        table: HTMLTableElement): dynamic {
+
+        return table.parentElement?.let {
+            if (it is HTMLElement) {
+                it.dataset["ocSmartTableColorStyle"]?.let {
+                    Codec.htmlAttrToJson(window, it)
+                } 
+                    
+            } else null
+        }
+    }
+        
 }
 
 // vi: se ts=4 sw=4 et:

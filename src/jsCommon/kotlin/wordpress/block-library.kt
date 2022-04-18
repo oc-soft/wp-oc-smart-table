@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/block-library")
+@file:JsNonModule
+package wordpress.block_library
+
 
 /**
- * entry point
+ * core blocks
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+external fun __experimentalGetCoreBlocks():Array<dynamic>
+
 // vi: se ts=4 sw=4 et:

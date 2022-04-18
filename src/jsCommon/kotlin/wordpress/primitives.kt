@@ -13,13 +13,29 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/primitives")
+@file:JsNonModule
 
-/**
- * entry point
- */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+package wordpress.primitives
+
+external val Circle: (dynamic)-> dynamic
+
+external val G: (dynamic)-> dynamic
+
+external val Path: (dynamic)-> dynamic
+
+external val Polygon: (dynamic)-> dynamic
+
+external val Rect: (dynamic)-> dynamic
+
+external val Defs: (dynamic)-> dynamic
+
+external val RadialGradient: (dynamic)-> dynamic
+
+external val LinearGradient: (props: dynamic)-> dynamic
+
+external val Stop: (dynamic)-> dynamic
+
+external val SVG: (dynamic)-> dynamic 
+
 // vi: se ts=4 sw=4 et:

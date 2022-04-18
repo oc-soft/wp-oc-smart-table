@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/compose")
+@file:JsNonModule
+package wordpress.compose
 
 /**
- * entry point
+ * create higher order component
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+external fun createHigherOrderComponent(
+    mapComponentToEnhansedComponent: (dynamic)-> dynamic,
+    modifierName: String): (dynamic)->dynamic
+
 // vi: se ts=4 sw=4 et:

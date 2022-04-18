@@ -1,7 +1,22 @@
 <?php
+/*
+ * Copyright 2022 oc-soft
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 
 /**
- * pdf viwer
+ * smart table application
  */
 class OcSmartTable {
 
@@ -46,9 +61,19 @@ class OcSmartTable {
     static $script_handle = 'oc-smart-table';
 
     /**
+     * script handle for editor
+     */
+    static $script_editor_handle = 'oc-smart-table-editor';
+
+    /**
      * javascript name
      */
     static $js_script_name = 'oc-smart-table.js';
+
+    /**
+     *  javascript editor name 
+     */
+    static $js_script_editor_name ='oc-smart-table-editor.js';
 
     /**
      * css style sheet name
@@ -102,10 +127,14 @@ EOT;
         $container_classes = array_map($insert_dot, 
             self::$table_container_classes); 
         $container_classes = implode('', $container_classes);
+
         $classes = array_map($insert_dot, self::$table_classes);
         $classes = implode('', $classes);
 
-        $table_query = "$container_classes table${classes}";
+        $table_query = implode(',', [
+            "$container_classes table${classes}",
+            "figure[data-oc-smart-table=\"true\"] table"
+        ]);
         $container_tag = self::$container_tag;
         $container_element_tag = self::$container_element_tag;
 
@@ -114,8 +143,6 @@ EOT;
                 return "'$elem'";
             }, self::$container_classes));
 
-
-        $support_size_query = $this->get_support_size_query();
         $result = <<<EOT
 window.oc.smartTable = window.oc.smartTable || {}
 window.oc.smartTable.tableQuery = '$table_query';
@@ -137,10 +164,14 @@ EOT;
     /**
      * setup script
      */
-    function setup_script($js_dir) {
+    function setup_script($js_dir,
+        $translations_dir) {
+
+
         wp_register_script(self::$script_handle,
             implode('/', [$js_dir, self::$js_script_name]),
             [], false);
+
 
         wp_add_inline_script(
             self::$script_handle,
@@ -152,8 +183,36 @@ EOT;
 
         wp_enqueue_script(self::$script_handle);
 
+        wp_set_script_translations(
+            self::$script_handle, 'oc-smart-table', $translations_dir);
+
     }
 
+
+    /**
+     * setup wordpress administrator mode script
+     */
+    function setup_admin_script($js_dir,
+        $translations_dir) {
+        $deps = ['wp-block-library'];
+
+        
+        
+        wp_register_script(self::$script_editor_handle,
+            implode('/', [$js_dir, self::$js_script_editor_name]),
+            $deps, 
+            false, true);
+
+        wp_enqueue_script(self::$script_editor_handle);
+
+        wp_set_script_translations(
+            self::$script_editor_handle, 'oc-smart-table', $translations_dir);
+
+        add_filter('load_script_textdomain_relative_path',
+            function($relative, $src) {
+                return $relative;
+            }, 10, 2);
+    }
 
     
     /**
@@ -161,11 +220,18 @@ EOT;
      */
     function on_init(
         $js_dir,
-        $css_dir) {
-        add_action('wp', function() use($js_dir, $css_dir) {
-            $this->setup_style($css_dir);
-            $this->setup_script($js_dir);
+        $css_dir,
+        $translations_dir) {
 
+
+        add_action('wp', function() use($js_dir, $css_dir, $translations_dir) {
+            $this->setup_style($css_dir);
+            $this->setup_script($js_dir, $translations_dir);
+
+        });
+
+        add_action('admin_init', function() use($js_dir, $translations_dir) {
+            $this->setup_admin_script($js_dir, $translations_dir);
         });
     }
 
@@ -177,11 +243,12 @@ EOT;
      */
     function run(
         $js_dir,
-        $css_dir) {
+        $css_dir,
+        $translations_dir) {
 
-
-        add_action('init', function() use($js_dir, $css_dir) {
-            $this->on_init($js_dir, $css_dir);
+        add_action('init', function() 
+            use($js_dir, $css_dir, $translations_dir) {
+            $this->on_init($js_dir, $css_dir, $translations_dir);
         });
     }
 }

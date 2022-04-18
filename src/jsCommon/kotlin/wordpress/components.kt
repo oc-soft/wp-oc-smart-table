@@ -13,13 +13,19 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/components")
+@file:JsNonModule
+package wordpress.components
 
-/**
- * entry point
- */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+
+external val PanelBody: (dynamic) -> dynamic
+
+
+external val ToggleControl: (dynamic) -> dynamic
+
+
+external val Modal: (dynamic) -> dynamic
+
+external val Button: (dynamic) -> dynamic
+
 // vi: se ts=4 sw=4 et:

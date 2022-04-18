@@ -13,13 +13,26 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/blocks")
+@file:JsNonModule
+package wordpress.blocks
 
 /**
- * entry point
+ * register block type
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+external fun registerBlockType(
+    blockNameOrMetaData: dynamic, settings: dynamic): dynamic
+
+/**
+ * get block type
+ */
+external fun getBlockType(
+    name: String): dynamic 
+
+/**
+ * unregister block type
+ */
+external fun unregisterBlockType(
+    name: String): dynamic
+
 // vi: se ts=4 sw=4 et:

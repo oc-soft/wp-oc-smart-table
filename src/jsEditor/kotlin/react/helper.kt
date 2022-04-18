@@ -13,13 +13,25 @@
  * limitations under the License.
  */
 
+package react.helper
+
+import react.ReactNode
+import react.ReactElement
 
 /**
- * entry point
+ * convert from react node to react element
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
+fun toReactElement(reactNode: ReactNode?): ReactElement<*>? {
+
+    return reactNode?.let {
+        if (js("'type' in it")
+            && js("'props' in it")
+            && js("'key' in it")) {
+            reactNode.unsafeCast<ReactElement<*>>()
+        } else {
+            null
+        }
+    }
 }
+
 // vi: se ts=4 sw=4 et:

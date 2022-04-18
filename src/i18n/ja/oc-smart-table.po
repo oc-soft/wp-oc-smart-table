@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-18 13:21+0900\n"
+"PO-Revision-Date: 2022-04-14 14:00+0900\n"
+"Last-Translator: Toshiyuki Ogawa <toshi@oc-soft.net>\n"
+"Language-Team: Japanese translators <info@oc-soft.net>\n"
+"Language: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: js/oc-smart-table-editor.js:618
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Other.kt:203
+msgid "Disable smart table"
+msgstr "スマートテーブルを無効"
+
+#: js/oc-smart-table-editor.js:620
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Other.kt:206
+msgid "Enable smart table"
+msgstr "スマートテーブルを有効"
+
+#: js/oc-smart-table-editor.js:751
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Settings.kt:104
+msgid "Smart table setting"
+msgstr "スマートテーブル設定"
+
+#: js/oc-smart-table-editor.js:758
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Settings.kt:112
+msgid "Inherit colors and styles"
+msgstr "色とスタイルを継承"
+
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/php/gen-index.sh:65
+msgid "Plugin Name"
+msgstr "OC スマートテーブル"
+
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/php/gen-index.sh:66
+msgid "Description"
+msgstr ""
+"スマートフォン表示でテーブルをリストに変換します。ブロックエディタに対応して"
+"います。"
+
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/php/gen-index.sh:67
+msgid "Author"
+msgstr "oc-soft"
+
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/php/gen-index.sh:68
+msgid "Version"
+msgstr ""

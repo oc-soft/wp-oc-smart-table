@@ -13,13 +13,36 @@
  * limitations under the License.
  */
 
+package net.oc_soft.control
+
 
 /**
- * entry point
+ * handle table color
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
+class Color {
+
+    /**
+     * class instance
+     */
+    companion object {
+        /**
+         * handle 
+         */
+        fun updateSetting(
+            settings: dynamic) {
+
+            if (settings.isSelected) {
+                // val colorProps = wordpress.blockEditor.useColorProps(
+                //    settings.attributes)
+                // gradient type
+                // attribute.gradient
+                // println(colorProps)
+            }
+            
+        }
+    }
 }
+
+
+
 // vi: se ts=4 sw=4 et:

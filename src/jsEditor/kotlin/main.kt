@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
+import net.oc_soft.App
 
 /**
  * entry point
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
+fun main() {
+    val app = App()
     app.run()
 }
+
+
 // vi: se ts=4 sw=4 et:

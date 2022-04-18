@@ -13,13 +13,33 @@
  * limitations under the License.
  */
 
+@file:JsModule("@wordpress/element")
+@file:JsNonModule
+
+package wordpress.element
+
+external fun createElement(
+    type: dynamic,
+    config: dynamic,
+    vararg children: dynamic): dynamic
+
+external fun createElement(
+    builder: (dynamic)->dynamic,
+    config: dynamic,
+    vararg children: dynamic): dynamic
+
+
+external fun cloneElement(
+    element: dynamic,
+    props: dynamic,
+    vararg children: dynamic): dynamic
+
 
 /**
- * entry point
+ * render attributes
  */
-fun main(
-    args: Array<String>) {
-    val app = net.oc_soft.App()
-    app.run()
-}
+external fun renderAttributes(
+    props: dynamic): String
+
+
 // vi: se ts=4 sw=4 et:

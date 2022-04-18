@@ -1,0 +1,1 @@
+Your page converts a table into a list automatically, if a viewer usees small display device. You can use this plugin with table block editor.
