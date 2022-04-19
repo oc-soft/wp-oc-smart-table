@@ -18,10 +18,10 @@
  * Plugin Name: OC Smart Table (free)
  * Description: Your page converts a table into a list automatically, if a viewer usees small display device. You can use this plugin with table block editor.
  * Author: Toshiyuki Ogawa
- * Version: 1.0.0
+ * Version: 0.1.0
  * Licence: Apache License 2.0
  * Licence URL: https://www.apache.org/licenses/LICENSE-2.0
- * Requires at leaste: 5.0
+ * Requires at leaste: 5.0 
  * Requires PHP: 5.4
  */
 
