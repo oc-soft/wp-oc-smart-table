@@ -21,8 +21,8 @@
  * @VERSION@
  * Licence: Apache License 2.0
  * Licence URL: https://www.apache.org/licenses/LICENSE-2.0
- * Requires at leaste: 5.0
- * Requires PHP: 5.4
+ * Requires at leaste: @REQUIRES_WP@ 
+ * Requires PHP: @REQUIRES_PHP@
  */
 
 require_once implode('/', [
