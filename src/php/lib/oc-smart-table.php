@@ -98,12 +98,10 @@ class OcSmartTable {
      */
     function get_ajax_inline_script() {
         $ajax_url = admin_url('admin-ajax.php');
-        $result = <<<EOT
-window.oc = window.oc || { }
-window.oc.smartTable = window.oc.smartTable || {}
-window.oc.smartTable.ajax = window.oc.smartTable.ajax || { }
-window.oc.smartTable.ajax.url = '$ajax_url'
-EOT;
+        $result = "window.oc = window.oc || { }\n"
+            . "window.oc.smartTable = window.oc.smartTable || {}\n"
+            . "window.oc.smartTable.ajax = window.oc.smartTable.ajax || { }\n"
+            . "window.oc.smartTable.ajax.url = '$ajax_url'";
         return $result;
     }
 
@@ -143,13 +141,13 @@ EOT;
                 return "'$elem'";
             }, self::$container_classes));
 
-        $result = <<<EOT
-window.oc.smartTable = window.oc.smartTable || {}
-window.oc.smartTable.tableQuery = '$table_query';
-window.oc.smartTable.containerTag = '$container_tag';
-window.oc.smartTable.containerElementTag = '$container_element_tag';
-window.oc.smartTable.containerClasses = [$container_classes];
-EOT;
+        $result = "window.oc.smartTable = window.oc.smartTable || {}\n"
+            . "window.oc.smartTable.tableQuery = '$table_query';\n"
+            . "window.oc.smartTable.containerTag = '$container_tag';\n"
+            . "window.oc.smartTable.containerElementTag = "
+                . "'$container_element_tag';\n"
+            . "window.oc.smartTable.containerClasses = [$container_classes];\n";
+
         return $result;
     }
     /**

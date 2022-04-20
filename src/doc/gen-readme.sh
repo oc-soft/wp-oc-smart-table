@@ -29,11 +29,13 @@ done
 plugin_name=$(cat ${assetsdir}/plugin-name.txt)
 requires_php=$(cat ${assetsdir}/requires-php.txt)
 requires_wp=$(cat ${assetsdir}/requires-wp.txt)
+version=$(cat ${assetsdir}/version.txt)
 
 
 sed -e "s/@PLUGIN_NAME@/Plugin\ Name:\ $plugin_name/" \
   -e "s/@REQUIRES_PHP@/$requires_php/" \
   -e "s/@REQUIRES_WP@/$requires_wp/" \
+  -e "s/@VERSION@/$version/" \
   ${srcdir}/readme.txt.in
 
 

@@ -2,8 +2,8 @@
 Contributors: toshiyuki
 Tags: block editor,table,responsive 
 Requires at least: @REQUIRES_WP@
-Tested up to: @REQUIRES_WP@
-Stable Tag:
+Tested up to: 5.9 
+Stable Tag: @VERSION@
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
