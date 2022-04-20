@@ -31,8 +31,11 @@ requires_php=$(cat ${assetsdir}/requires-php.txt)
 requires_wp=$(cat ${assetsdir}/requires-wp.txt)
 
 
-
-
+sed -e "s/@PLUGIN_NAME@/Plugin\ Name:\ $plugin_name/" \
+  -e "s/@REQUIRES_PHP@/$requires_php/" \
+  -e "s/@REQUIRES_WP@/$requires_wp/" \
+  ${srcdir}/readme.txt.in
 
 
 # vi: se ts=4 sw=4 et:
+

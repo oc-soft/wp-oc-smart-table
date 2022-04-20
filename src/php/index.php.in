@@ -16,12 +16,13 @@
 
 /**
  * @PLUGIN_NAME@
+ * Plugin URI: https://oc-soft.net/en/oc-smart-table/
  * @DESCRIPTION@
  * @AUTHOR@
  * @VERSION@
  * Licence: Apache License 2.0
  * Licence URL: https://www.apache.org/licenses/LICENSE-2.0
- * Requires at leaste: @REQUIRES_WP@ 
+ * Requires at least: @REQUIRES_WP@ 
  * Requires PHP: @REQUIRES_PHP@
  */
 

@@ -96,6 +96,7 @@ kotlin {
     js {
         createCompilation(compilations, 'js')
 
+
         browser {
             webpackTask {
                 output.libraryTarget = 'umd'
@@ -131,13 +132,27 @@ kotlin {
         }
 
         jsEditor {
-            dependencies {
-            }
-
             dependsOn jsCommon
         }
     }
 }
+
+
+
+
+
+tasks.getByPath('jsBrowserProductionWebpack').mode = 'production'
+
+if (hasProperty("productionCompile")) {
+    kotlin.js {
+        compilations.each {
+            it.kotlinOptions {
+                sourceMap = false
+            }
+        }
+    }
+}
+
 
 /** create npm project */
 def createNpmProject(def compilation) {
@@ -668,8 +683,10 @@ task copyConfigIntoSiteImage {
 task archivePlugin(type: org.gradle.api.tasks.bundling.Zip) {
     description = 'archive plugin'
     def inputDir = "${buildDir}/${siteSetting['targetDirectory']}"
-
     def outputDir = new File(buildDir, "wordpress/plugins")
+
+    exclude 'js/*.map'
+    exclude 'css/*.map'    
 
     archiveBaseName = project.name
     destinationDir = outputDir
@@ -678,7 +695,12 @@ task archivePlugin(type: org.gradle.api.tasks.bundling.Zip) {
 }
 
 
-task generateReadMe {
+/**
+ * generate readme.txt 
+ */
+task generateReadme {
+    description = 'generate readme.txt for wordpress plugin'
+
     def shScript = 'src/doc/gen-readme.sh'
     def readmeIn = 'src/doc/readme.txt.in'
     def readmeOut = 'src/doc/readme.txt'
@@ -692,17 +714,93 @@ task generateReadMe {
 
             executable = 'sh'
             args file(shScript)
-            args '-h'
-            args '-s', file(readmeIn)
+            args '-s', file(readmeIn).parentFile
             args '-a', file('src/assets')
             standardOutput = stream
         }
         stream.close()
     }
-
-    
 }
 
+/**
+ * copy readme into site image
+ */
+task copyReadmeIntoSiteImage {
+    description = 'copy readme.txt into site image'
+
+    dependsOn generateReadme
+
+    def srcfile = file('src/doc/readme.txt')
+    def destfile = file("build/${siteSetting['targetDirectory']}/readme.txt")
+
+    inputs.files srcfile
+    outputs.files destfile
+
+    doLast {
+        copy {
+            from srcfile
+            into destfile.parentFile
+        }
+    }
+}
+
+/**
+ * copy assets into site image
+ */
+task copyAssetsIntoSiteImage {
+    description = 'copy assets into site image'
+
+    def imageNames = [
+        'enable-oc-smart-table-free-edition.png',
+        'small-width-browser-view-smart-table.png',
+        'desktop-browser-view-smart-table.png',
+        'inheritance-colors-and-styles.png',
+        'oc-smart-table-extended-menu-item.png'
+    ]
+
+    def inputFiles = fileTree('src/assets') {
+
+        imageNames.each {
+            include it
+        }
+        
+
+        include 'icon.svg' 
+        include 'icon-128x128.png'
+        include 'icon-256x256.png'
+
+        include 'banner-772x250.png'
+        include 'banner-772x250.jpg'
+        include 'banner-1544x500.png'
+        include 'banner-1544x500.jpg'
+    }
+
+    def destDir = file("build/${siteSetting['targetDirectory']}/assets")
+    inputFiles.forEach {
+        inputs.files it
+        outputs.files new File(destDir, it.name)
+    }
+
+    doLast {
+        copy {
+            inputFiles.forEach {
+                from it
+            }
+            into destDir
+             
+            imageNames.eachWithIndex {
+                name, idx ->
+                def lastIdx = name.lastIndexOf('.')
+                def ext = ''
+                if (lastIdx > 0) {
+                    ext = name.substring(lastIdx)
+                }
+                rename(name, "screenshot-${idx + 1}${ext}")
+            }
+        }
+    }
+
+}
 
 /**
  * build site imate
@@ -716,6 +814,8 @@ buildSiteImage.dependsOn build
 buildSiteImage.dependsOn copyPhpIntoSiteImage
 buildSiteImage.dependsOn copyJsIntoSiteImage
 buildSiteImage.dependsOn copyConfigIntoSiteImage
+buildSiteImage.dependsOn copyReadmeIntoSiteImage
+buildSiteImage.dependsOn copyAssetsIntoSiteImage
 buildSiteImage.dependsOn compileSass
 buildSiteImage.dependsOn copyMoIntoSiteImage
 

@@ -1,0 +1,33 @@
+date,overview, Maximum instantaneous wind speed(m/s),Wind direction,Daylight hours,Average temperature(celsius)
+2022-03-18,Rain sometimes cloudy,10.5,Northeast,0.0,5.2
+2022-03-19,Sunny then cloudy temporary rain,15.9,Northwest,0.0,10.1
+2022-03-20,Sunny then cloudy,11.6,Northwest,6.9,9.9
+2022-03-21,Cloudy then temporary fine,7.7,Southeast,4.0,9.6
+2022-03-22,Temporay rain sleet,9.8,North Northeast,0.0,3.7
+2022-03-23,Light cloudy,6.8,East Northeast,6.3,5.2
+2022-03-24,Fine,8.2,Southeast,9.5,8.2
+2022-03-25,Sunny,12.1,South,10.9,12.2
+2022-03-26,Cloudy then sometimes rain,20.2,South Southwest,0.0,16.1
+2022-03-27,Cloudy temporary sunny,11.0,Southeast,2.1,16.2
+2022-03-28,Sunny and sometimes cloudy,10.8,North,6.1,13.5
+2022-03-29,Cloudy,7.1,Northeast,0.0,10.2
+2022-03-30,Cloudy and sunny,13.6,South Southeast,3.9,14.5
+2022-03-31,Cloudy,11.6,East Northeast,6.0,15.1
+2022-04-01,Temporay rain,12.4,North,5.2,7.6
+2022-04-02,Lightly cloudy and sometimes sunny,9.7,Southeast,11.6,8.5
+2022-04-03,Temporary cloudy rain,8.9,Northwest,0.0,8.2
+2022-04-04,Heavy rain,11.9,North Northwest,0.0,8.5
+2022-04-05,Cloudy Temporay rain and then sunny,10.5,North Northwest,3.1,12.6
+2022-04-06,Cloudy then sunny,11.1,South Southeast,7.9,15.5
+2022-04-07,Cloudy,10.0,South,6.2,14.3
+2022-04-08,Sunny,10.9,South,11.8,15.4
+2022-04-09,Sunny,12.6,South Southeast,11.5,17.2
+2022-04-10,Sunny,7.6,South,11.8,19.6
+2022-04-11,Light cloudy,12.3,South Southeast,9.5,18.9
+2022-04-12,Sunny,9.5,South Southwest,11.8,20.0
+2022-04-13,Light cloudy,9.8,South Southeast,11.3,20.8
+2022-04-14,Rain,11.4,Northeast,0.0,12.3
+2022-04-15,Rain,9.5,Northeast,0.0,10.1
+2022-04-16,Cloudy sometimes sunny temporary rain,8.2,West Northwest,5.5,12.5
+2022-04-17,Cloudy,7.7,South Southeast,4.6,13.7
+2022-04-18,Cloudy and somtimes rain,9.6,Northwest,0.9,14.3

@@ -141,7 +141,7 @@ class SmartTable {
         element: HTMLElement,
         colorStyle: dynamic) {
 
-        if (colorStyle.className) {
+        if (colorStyle && colorStyle.className) {
             
             val classNames = if (colorStyle.className is Array<*>) {
                 colorStyle.className as Array<String>
@@ -156,7 +156,9 @@ class SmartTable {
                 element.classList.add(it)
             }
         }
-        if (colorStyle.style && jsTypeOf(colorStyle.style) == "object") {
+        if (colorStyle &&
+            colorStyle.style && 
+            jsTypeOf(colorStyle.style) == "object") {
             val keys = js("Object.keys(colorStyle.style)") as Array<String>
             keys.forEach {
                 element.style.setProperty(it, colorStyle.style[it])
