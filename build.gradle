@@ -695,6 +695,32 @@ task archivePlugin(type: org.gradle.api.tasks.bundling.Zip) {
 }
 
 
+task generateReadMe {
+    def shScript = 'src/doc/gen-readme.sh'
+    def readmeIn = 'src/doc/readme.txt.in'
+    def readmeOut = 'src/doc/readme.txt'
+
+    inputs.files shScript, readmeIn
+    outputs.files readmeOut
+
+    doLast {
+        def stream = file(readmeOut).newOutputStream()
+        exec {
+
+            executable = 'sh'
+            args file(shScript)
+            args '-h'
+            args '-s', file(readmeIn)
+            args '-a', file('src/assets')
+            standardOutput = stream
+        }
+        stream.close()
+    }
+
+    
+}
+
+
 /**
  * generate readme.txt 
  */
