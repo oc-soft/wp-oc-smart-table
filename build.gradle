@@ -486,7 +486,7 @@ task msgfmt {
         def langName = it.parentFile.name
         ioParams << [
             it, 
-            file("src/i18n/oc-smart-talbe-${langName}.mo"),
+            file("src/i18n/oc-smart-table-${langName}.mo"),
             'oc-smart-table',
             langName
         ]
@@ -728,10 +728,13 @@ task generateReadme {
     description = 'generate readme.txt for wordpress plugin'
 
     def shScript = 'src/doc/gen-readme.sh'
+
     def readmeIn = 'src/doc/readme.txt.in'
     def readmeOut = 'src/doc/readme.txt'
+    def assetsDir = 'src/assets'
 
     inputs.files shScript, readmeIn
+    inputs.dir assetsDir
     outputs.files readmeOut
 
     doLast {
@@ -864,5 +867,25 @@ task installPlugin {
 }
 
 archivePlugin.dependsOn buildSiteImage
+
+
+
+task updatePluginDir {
+    description = 'update plugin directory'
+
+    dependsOn buildSiteImage
+    doLast {
+        copy {
+            from "${buildDir}/${siteSetting['targetDirectory']}"
+            into "plugins/trunk"
+            exclude "assets"
+        }
+        copy {
+            from "${buildDir}/${siteSetting['targetDirectory']}/assets"
+            into "plugins/assets"
+        }
+    }
+}
+
 
 // vi: se ts=4 sw=4 et:

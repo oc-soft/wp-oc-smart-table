@@ -19,7 +19,7 @@
  * Plugin URI: https://oc-soft.net/en/oc-smart-table/
  * Description: Your page converts a table into a list automatically, if a viewer usees small display device. You can use this plugin with table block editor.
  * Author: Toshiyuki Ogawa
- * Version: 0.1.1
+ * Version: 0.1.2
  * Licence: Apache License 2.0
  * Licence URL: https://www.apache.org/licenses/LICENSE-2.0
  * Requires at least: 5.0 
