@@ -130,7 +130,7 @@ class OcSmartTable {
         $classes = implode('', $classes);
 
         $table_query = implode(',', [
-            "$container_classes table${classes}",
+            "$container_classes:not([data-oc-smart-table]) table${classes}",
             "figure[data-oc-smart-table=\"true\"] table"
         ]);
         $container_tag = self::$container_tag;
@@ -147,7 +147,6 @@ class OcSmartTable {
             . "window.oc.smartTable.containerElementTag = "
                 . "'$container_element_tag';\n"
             . "window.oc.smartTable.containerClasses = [$container_classes];\n";
-
         return $result;
     }
     /**

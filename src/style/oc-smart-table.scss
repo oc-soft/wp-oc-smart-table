@@ -2,7 +2,7 @@
 
 @use "breaks";
 
-.wp-block-table.oc-smart-table,
+.wp-block-table.oc-smart-table:not([data-oc-smart-table]),
 figure[data-oc-smart-table="true"] {
   table {
     display: none;
@@ -29,7 +29,7 @@ ul.oc-smart-table-container {
 }
 
 @media (min-width: map.get(breaks.$basic-breakpoints, sm)) {
-  .wp-block-table.oc-smart-table,
+  .wp-block-table.oc-smart-table:not([data-oc-smart-table]),
   figure[data-oc-smart-table="true"] {
     table {
       display: table;

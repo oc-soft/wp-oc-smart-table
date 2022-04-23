@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-23 12:40+0900\n"
+"POT-Creation-Date: 2022-04-24 05:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,43 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: js/oc-smart-table-editor.js:396
-#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:130
+#: js/oc-smart-table-editor.js:398
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:134
 msgid "Close"
 msgstr ""
 
-#: js/oc-smart-table-editor.js:408
-#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:89
+#: js/oc-smart-table-editor.js:410
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:93
 msgid "Additional CSS class(es)"
-msgstr ""
-
-#: js/oc-smart-table-editor.js:409
-#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:90
-msgid "Advanced"
 msgstr ""
 
 #: js/oc-smart-table-editor.js:411
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:94
+msgid "Advanced"
+msgstr ""
+
+#: js/oc-smart-table-editor.js:413
+#: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/action/Entity.kt:98
 #, c-format, javascript-format
 msgid "You put <b>%s</b> into <b>%s</b> at %s, if you use <b>Smart Table</b>."
 msgstr ""
 
-#: js/oc-smart-table-editor.js:656
+#: js/oc-smart-table-editor.js:658
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Other.kt:203
 msgid "Disable smart table"
 msgstr ""
 
-#: js/oc-smart-table-editor.js:658
+#: js/oc-smart-table-editor.js:660
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Other.kt:206
 msgid "Enable smart table"
 msgstr ""
 
-#: js/oc-smart-table-editor.js:789
+#: js/oc-smart-table-editor.js:788
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Settings.kt:104
 msgid "Smart table setting"
 msgstr ""
 
-#: js/oc-smart-table-editor.js:796
+#: js/oc-smart-table-editor.js:795
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Settings.kt:112
 msgid "Inherit colors and styles"
 msgstr ""

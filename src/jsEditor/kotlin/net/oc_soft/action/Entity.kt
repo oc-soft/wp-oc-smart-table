@@ -77,13 +77,17 @@ class Entity {
             setAttributes(object {
                 @JsName("ocSmartTableRequest")
                     val ocSmartTableRequest = false
-            })
+                @JsName("ocSmartTable")
+                    val ocSmartTable = false
+             })
         }
         val onClickToClose: (Event)->Unit = { 
             setAttributes(object {
                 @JsName("ocSmartTableRequest")
                     val ocSmartTableRequest = false
-            })
+                @JsName("ocSmartTable")
+                    val ocSmartTable = false
+             })
         }
 
         val classesLabel = wordpress.i18n.gettext("Additional CSS class(es)")
@@ -99,7 +103,7 @@ class Entity {
         return wordpress.element.createElement(wordpress.components.Modal,
             object {
                 @JsName("onRequestClose")
-                val onRequestCose = onClose
+                val onRequestClose = onClose
             },
             wordpress.element.createElement(
                 "p",

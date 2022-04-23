@@ -54,12 +54,8 @@ class Save {
                 
             }
         }
-        if (attr.ocSmartTable == true) {
-            props["data-oc-smart-table"] = true
 
-        }
-        if (props["data-oc-smart-table"]
-            || props["data-oc-smart-table-color-style"]) {
+        if (props["data-oc-smart-table-color-style"]) {
             savedElement = react.cloneElement(
                 savedElement, props, *Children.toArray(
                     savedElement.props.children))
