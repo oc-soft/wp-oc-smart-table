@@ -39,7 +39,7 @@ class Save {
             as ReactElement<PropsWithChildren>
 
         val attr = settings.attributes
-        val props = js("{}")
+        var props = js("{}")
         if (attr.ocSmartTableInheritColorsAndStyles) {
             val colorClassesAndStyles = 
                 wordpress.blockEditor.getColorClassesAndStyles(attr)
@@ -54,14 +54,27 @@ class Save {
                 
             }
         }
+        props = updateSmartTableSetting(props, attr)
 
-        if (props["data-oc-smart-table-color-style"]) {
+        if (props["data-oc-smart-table"]
+            || props["data-oc-smart-table-color-style"]) {
             savedElement = react.cloneElement(
                 savedElement, props, *Children.toArray(
                     savedElement.props.children))
         }
 
         return savedElement
+    }
+
+
+    /**
+     * update smart table setting
+     */
+    fun updateSmartTableSetting(
+        props: dynamic,
+        attr: dynamic): dynamic {
+        
+        return props
     }
 }
 

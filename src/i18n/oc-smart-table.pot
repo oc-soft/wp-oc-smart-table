@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-24 05:56+0900\n"
+"POT-Creation-Date: 2022-04-24 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,12 +48,12 @@ msgstr ""
 msgid "Enable smart table"
 msgstr ""
 
-#: js/oc-smart-table-editor.js:788
+#: js/oc-smart-table-editor.js:792
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Settings.kt:104
 msgid "Smart table setting"
 msgstr ""
 
-#: js/oc-smart-table-editor.js:795
+#: js/oc-smart-table-editor.js:799
 #: /Users/toshiyuki/Projects/wp-dev/oc-smart-table/src/jsEditor/kotlin/net/oc_soft/control/Settings.kt:112
 msgid "Inherit colors and styles"
 msgstr ""
