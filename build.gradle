@@ -50,7 +50,7 @@ ext.appNames = [
 ]
 
 ext.siteSetting = [
-    targetDirectory: project.name
+    targetDirectory: "${project.name}-free"
 ]
 
 ext.webpackMode = 'development'
@@ -397,7 +397,7 @@ task xgettext {
         include 'php/**/*.php'
         include 'php/**/*.sh'
     } 
-    def output = file('src/i18n/oc-smart-table.pot')
+    def output = file('src/i18n/oc-smart-table-free.pot')
     outputs.files output
     srcTree.forEach {
         inputs.files it
@@ -447,7 +447,7 @@ task msgmerge {
         outputs.files it
     }
 
-    def potFile = file('src/i18n/oc-smart-table.pot')
+    def potFile = file('src/i18n/oc-smart-table-free.pot')
     inputs.files potFile
 
     doLast {
@@ -477,8 +477,8 @@ task msgfmt {
         def langName = it.parentFile.name
         ioParams << [
             it, 
-            file("src/i18n/oc-smart-table-${langName}.mo"),
-            'oc-smart-table',
+            file("src/i18n/oc-smart-table-free-${langName}.mo"),
+            'oc-smart-table-free',
             langName
         ]
     }
@@ -679,9 +679,9 @@ task archivePlugin(type: org.gradle.api.tasks.bundling.Zip) {
     exclude 'js/*.map'
     exclude 'css/*.map'    
 
-    archiveBaseName = project.name
+    archiveBaseName = "${project.name}"
     destinationDir = outputDir
-    into project.name
+    into "${project.name}-free"
     from inputDir
 }
 

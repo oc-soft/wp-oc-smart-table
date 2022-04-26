@@ -200,10 +200,10 @@ class Other {
      
             val title = if (js("attr.ocSmartTable == true")) {
                 wordpress.i18n.gettext(
-                    "Disable smart table", "oc-smart-table")
+                    "Disable smart table", "oc-smart-table-free")
             } else {
                 wordpress.i18n.gettext(
-                    "Enable smart table", "oc-smart-table")
+                    "Enable smart table", "oc-smart-table-free")
             }
            
             val control = object {

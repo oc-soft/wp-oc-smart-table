@@ -102,7 +102,7 @@ class Settings {
                     @JsName("title")
                     val title = wordpress.i18n.gettext(
                         "Smart table setting",
-                        "oc-smart-table")
+                        "oc-smart-table-free")
                 }, 
                 wordpress.element.createElement(
                     wordpress.components.ToggleControl,
@@ -110,7 +110,7 @@ class Settings {
                         @JsName("label")
                         val label = wordpress.i18n.gettext(
                             "Inherit colors and styles",
-                            "oc-smart-table")
+                            "oc-smart-table-free")
                         @JsName("checked")
                         val checked = inheritColorsAndStyles
                         @JsName("onChange")

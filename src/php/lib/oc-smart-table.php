@@ -181,7 +181,9 @@ class OcSmartTable {
         wp_enqueue_script(self::$script_handle);
 
         wp_set_script_translations(
-            self::$script_handle, 'oc-smart-table', $translations_dir);
+            self::$script_handle, 
+            'oc-smart-table-free', 
+            $translations_dir);
 
     }
 
@@ -203,7 +205,9 @@ class OcSmartTable {
         wp_enqueue_script(self::$script_editor_handle);
 
         wp_set_script_translations(
-            self::$script_editor_handle, 'oc-smart-table', $translations_dir);
+            self::$script_editor_handle,
+            'oc-smart-table-free', 
+            $translations_dir);
 
         add_filter('load_script_textdomain_relative_path',
             function($relative, $src) {

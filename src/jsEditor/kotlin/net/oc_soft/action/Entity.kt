@@ -77,17 +77,13 @@ class Entity {
             setAttributes(object {
                 @JsName("ocSmartTableRequest")
                     val ocSmartTableRequest = false
-                @JsName("ocSmartTable")
-                    val ocSmartTable = false
-             })
+            })
         }
         val onClickToClose: (Event)->Unit = { 
             setAttributes(object {
                 @JsName("ocSmartTableRequest")
                     val ocSmartTableRequest = false
-                @JsName("ocSmartTable")
-                    val ocSmartTable = false
-             })
+            })
         }
 
         val classesLabel = wordpress.i18n.gettext("Additional CSS class(es)")
@@ -96,7 +92,7 @@ class Entity {
 
         val msgFmt = wordpress.i18n.gettext(
 "You put <b>%s</b> into <b>%s</b> at %s, if you use <b>Smart Table</b>.", 
-           "oc-smart-table")
+           "oc-smart-table-free")
         val msg = wordpress.i18n.sprintf(msgFmt,
             smartTableSelector, classesLabel, advancedLabel)
 
