@@ -13,7 +13,7 @@ It swaps list for table, if a viewer opens your page with small width display.
 
 This plugin swaps list for table, if a viewer opens a your page with small width display.
 The list for small width display is made from the table which you put in a page with table block editor. You do not need to write list having same contents in table. You can enable this plugin with a simple operation.
-The plugin create list on browser dynamically. So the list is not exists in your Wordpress database. You will edit the table being enabled this plugin, even after you uninstall this plugin. 
+The plugin creates list on browser dynamically. So the list is not exists in your Wordpress database. You will edit the table being enabled this plugin, even after you uninstall this plugin. 
 
 = Table structure and List structure =
 
