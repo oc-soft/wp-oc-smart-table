@@ -40,14 +40,14 @@ You put "oc-smart-table" in  Additional CSS class(es) at Advanced section on Set
 
 = Enable OC Smart Table =
 
-If you have OC Smart Table standard edition, You click "Enable Smart Table" from other toolbar item in table block edtior, then You make the editting table be enabled Smart Table.
+If you have OC Smart Table standard edition, You click "Enable Smart Table" from other toolbar item in table block editor, then You make the editing table be enabled Smart Table.
 
 You can buy standard edition from [here](https://ocsoft.base.shop/items/62050748).
 
 
 = Inherit colors and styles =
 
-You can make the list which the plugin create having tables's colors and styles. To enable the inheritance, You need to enable option "inherit colors and styles" in Smart table setting in Setting sidebar.
+You can make the list which the plugin create having table's colors and styles. To enable the inheritance, You need to enable option "inherit colors and styles" in Smart table setting in Setting sidebar.
 
 == ChangeLog ==
 
