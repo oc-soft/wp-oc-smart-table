@@ -90,11 +90,27 @@ class Entity {
         val advancedLabel = wordpress.i18n.gettext("Advanced")
         val smartTableSelector = "oc-smart-table"
 
-        val msgFmt = wordpress.i18n.gettext(
+        val msgFmts = arrayOf(
+            wordpress.i18n.gettext(
 "You put <b>%s</b> into <b>%s</b> at %s, if you use <b>Smart Table</b>.", 
-           "oc-smart-table-free")
-        val msg = wordpress.i18n.sprintf(msgFmt,
-            smartTableSelector, classesLabel, advancedLabel)
+            "oc-smart-table-free"),
+            wordpress.i18n.gettext(
+"You can buy <b>OC Smart Table</b> standard edition from %s.",
+            "oc-smart-table-free"))
+        val shopName = wordpress.i18n.gettext("ocsoft.base.shop in BASE",
+            "oc-smart-table-free") 
+
+        val shopURL = "https://ocsoft.base.shop/items/62050748"
+        val shopLink = "<a href=\"$shopURL\" target=\"_blank\">$shopName</a>"
+
+        val msgs = arrayOf(
+            wordpress.i18n.sprintf(msgFmts[0],
+                smartTableSelector, classesLabel, advancedLabel),
+            wordpress.i18n.gettext(
+"You enable easily <b>Smart Table</b> also with <b>OC Smart Table</b> standard edition.",
+            "oc-smart-table-free"),
+            wordpress.i18n.sprintf(msgFmts[1], shopLink)
+        )
 
         return wordpress.element.createElement(wordpress.components.Modal,
             object {
@@ -107,11 +123,31 @@ class Entity {
                     @JsName("dangerouslySetInnerHTML")
                     val dangerouslySetInnerHTML = object {
                         @JsName("__html")
-                        val html = msg
+                        val html = msgs[0]
                     }
                 } 
             ),
             wordpress.element.createElement(
+                "p",
+                object {
+                    @JsName("dangerouslySetInnerHTML")
+                    val dangerouslySetInnerHTML = object {
+                        @JsName("__html")
+                        val html = msgs[1]
+                    }
+                } 
+            ),
+            wordpress.element.createElement(
+                "p",
+                object {
+                    @JsName("dangerouslySetInnerHTML")
+                    val dangerouslySetInnerHTML = object {
+                        @JsName("__html")
+                        val html = msgs[2]
+                    }
+                } 
+            ),
+             wordpress.element.createElement(
                 wordpress.components.Flex,
                 object {
                     @JsName("justify")
