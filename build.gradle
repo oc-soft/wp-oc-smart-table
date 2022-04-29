@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.6.20'
+    id 'org.jetbrains.kotlin.multiplatform' version '1.6.21'
     id 'io.miret.etienne.sass' version '1.1.2'
 }
 
@@ -878,5 +878,30 @@ task updatePluginDir {
     }
 }
 
+
+task codecanyonScreenshots(type: org.gradle.api.tasks.bundling.Zip) {
+    description = 'create zip archive for codecanyon screenshots'
+     
+    from 'src/assets'
+    archiveBaseName = "codecanyon-preview"
+    destinationDir = buildDir
+    include 'oc-smart-table-extended-menu-item.png'
+    include 'desktop-browser-view-smart-table.png'
+    include 'small-width-browser-view-smart-table.png'
+}
+
+/**
+ * copy archive into upload directory
+ */
+task copyArchiveIntoUploadDirectory {
+    description = 'copy archive into upload directory'
+    dependsOn archivePlugin
+
+    doLast {
+        def pluginPath = file(archivePlugin.archiveFile)
+        project.parent.copyDataIntoUploadDirectory pluginPath
+    }
+    
+}
 
 // vi: se ts=4 sw=4 et:
