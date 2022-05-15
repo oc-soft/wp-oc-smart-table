@@ -9,6 +9,28 @@ class Resolve {
    * setup configuration
    */
   setup(config) {
+    this.setupAlias(config)
+  }
+
+  /**
+   * setup alias
+   */
+  setupAlias(config) {
+    const resolve = config.resolve || {}
+    const alias = resolve.alias || {}
+ 
+
+    alias.kotlin = './kotlin.js'
+    
+    resolve.alias = alias
+    config.resolve = resolve
+  }
+
+
+  /**
+   * setup configuration
+   */
+  setupConfig(config) {
     const resolve = config.resolve || {}
     const modules = resolve.modules || {}
     const entryMap = GradleBuild.config.js[config.mode]
@@ -20,6 +42,8 @@ class Resolve {
     resolve.modules = modules
     config.resolve = resolve
   }
+
+
 }
 
 

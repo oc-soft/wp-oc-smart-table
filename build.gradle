@@ -156,6 +156,13 @@ def getCompilerClasspath() {
 
 
 /**
+ * kotlin js path
+ */
+def getKotlinJsPath() {
+    return  rootProject.file('build/js/node_modules/kotlin/kotlin.js')
+}
+
+/**
  * run javascript deadcode elimination
  */
 def runJsDce(
@@ -172,7 +179,7 @@ def runJsDce(
         if (devMode) {
             args '-dev-mode' 
         }
-        args source
+        args source, kotlinJsPath
     } 
 }
 
@@ -550,7 +557,7 @@ task copyMoIntoSiteImage  {
 }
 
 
-copyJsIntoSiteImage.dependsOn tasks.getByPath(getWebpackTaskName())
+copyJsIntoSiteImage.dependsOn jsBrowserWebpack
 
 
 task generateIndexPhp {
